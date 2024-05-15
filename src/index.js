@@ -222,7 +222,7 @@ function resetFilters(){
 }
 
 
-export {addTodoEventListeners};
+export {addTodoEventListeners, addProjectEventListeners};
 
 
 

@@ -1,8 +1,9 @@
 import {getProjectsArr, addProject, getProject, findSelectedProject, changeSelectedProject} from "./projects.js";
 import createTodoList, {addTask, getTask, updateListDisplay, filterProject, restoreTask} from "./todoList.js";
-import {displaySelectedProject} from "./display/project-display.js";
+import {displaySelectedProject, displayNewProject} from "./display/project-display.js";
 import { resetTodoContainer } from "./display/task-display.js";
 import { addTodoEventListeners } from "./index.js";
+import { addProjectEventListeners } from "./index.js";
 
 
 function updateStorage(){
@@ -28,7 +29,7 @@ function updateStorage(){
             }
         ) 
     }
-
+    console.log(projectsObjArr);
     localStorage.setItem("project list", JSON.stringify(projectsObjArr));
    
 
@@ -51,6 +52,7 @@ function loadPage(){
 function retrieveStorage(){
    
     let projectListArr = JSON.parse(localStorage.getItem("project list"));
+    console.log(projectListArr);
     if(!projectListArr) return;
 
     if(projectListArr.length === 0) return;
@@ -66,6 +68,8 @@ function retrieveStorage(){
 
         else{
             addProject(createTodoList(obj.name));
+            displayNewProject(obj.name);
+            addProjectEventListeners();
             for(let todo of obj.list){
             getProject(obj.name).restoreTask(todo.title, todo.rawDate, todo.description, todo.priority);
         };

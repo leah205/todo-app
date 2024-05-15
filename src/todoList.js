@@ -31,7 +31,7 @@ export default function createTodoList(project){
         else{
             console.log("fail");
             for(let task of this.todoList){
-                
+                console.log(oldTask.title === task.title );
                 if(oldTask.title === task.title &&
                 oldTask.rawDate ===task.rawDate &&
                 oldTask.description === task.description &&
@@ -44,6 +44,7 @@ export default function createTodoList(project){
         }
        
         if(!("isDefault" in this)){
+            console.log("hola");
             replaceTaskFromHome(arr, oldTask);
         }
         
