@@ -24,12 +24,29 @@ export default function createTodoList(project){
     function replaceTask(arr, oldTask){
         let [title, date, description, priority] = arr;
         const newTask = createTodoItem(title, date, description, priority);
-        this.todoList[this.todoList.indexOf(oldTask)] = newTask;
+        console.log(this.todoList[this.todoList.indexOf(oldTask)]);
+        if(this.todoList.includes(oldTask)){
+            this.todoList[this.todoList.indexOf(oldTask)] = newTask;
+        }
+        else{
+            console.log("fail");
+            for(let task of this.todoList){
+                
+                if(oldTask.title === task.title &&
+                oldTask.rawDate ===task.rawDate &&
+                oldTask.description === task.description &&
+                oldTask.priority === task.priority ){
+                    
+                    this.todoList[this.todoList.indexOf(task)] = newTask;
+                    break;
+                }
+            }
+        }
+       
         if(!("isDefault" in this)){
             replaceTaskFromHome(arr, oldTask);
         }
         
-      
     }
 
     function addTask(...args){

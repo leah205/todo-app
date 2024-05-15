@@ -23,8 +23,9 @@ function addTaskToHome(...args){
 function completeTaskFromHome(todo){
     defaultProject.completeTask(todo);
 }
-function replaceTaskFromHome(newTask, oldTask){
-    defaultProject.replaceTask(newTask, oldTask);
+function replaceTaskFromHome(arr, oldTask){
+    defaultProject.replaceTask(arr, oldTask);
+    console.log(defaultProject);
 }
 
 export {addTaskToHome, completeTaskFromHome, replaceTaskFromHome};

@@ -29,9 +29,8 @@ function updateStorage(){
         ) 
     }
 
-    console.log(projectsObjArr);
     localStorage.setItem("project list", JSON.stringify(projectsObjArr));
-    console.log(JSON.parse(localStorage.getItem("project list")));
+   
 
 }
 

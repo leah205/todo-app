@@ -1,5 +1,5 @@
 import "./style.css";
-import {findSelectedProject, removeProject, changeSelectedProject, isDeletedProject} from "./projects.js";
+import {findSelectedProject, removeProject, changeSelectedProject, isDeletedProject, getProject} from "./projects.js";
 import createTodoList, {addTask, getTask, updateListDisplay, filterProject} from "./todoList.js";
 import {displayAddTaskSection, removeAddTaskSection, getTaskDetails, setPriority, allFieldsFilled,
 displayFieldError} from "./display/task-add-display.js";
@@ -180,6 +180,8 @@ function refreshSubmitChangesButton(){
         }
         let detailsArr = getTaskDetails();
         findSelectedProject().replaceTask(detailsArr,getViewedTask());
+        console.log(getProject("Home"));
+        //getProject("Home").replaceTask(detailsArr, getViewedTask());
         removeAddTaskSection();
         displayTodos();
         submitChangesButton.removeEventListener("click", handleClickSubmitChanges);
