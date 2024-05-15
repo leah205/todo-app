@@ -84,6 +84,7 @@ function removeAddTaskSection(){
 };
 
 function allFieldsFilled(){
+    console.log(titleInput.value);
     console.log(titleInput.value && dateInput.value 
         && descriptionInput.value && priorityInput.value);
 

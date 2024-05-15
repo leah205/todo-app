@@ -167,7 +167,7 @@ const editTaskButton = document.querySelector(".edit-task");
 editTaskButton.addEventListener("click", () => {
     editViewedTask();
     refreshSubmitChangesButton();
-    resetFilters();
+    //resetFilters();
     
 })
 function refreshSubmitChangesButton(){
@@ -183,8 +183,11 @@ function refreshSubmitChangesButton(){
         removeAddTaskSection();
         displayTodos();
         submitChangesButton.removeEventListener("click", handleClickSubmitChanges);
+        resetTodoContainer();
+        applyFilters();
         addTodoEventListeners();
         updateStorage();
+        
 
     }
    
@@ -195,12 +198,14 @@ const filterDateSelect = document.querySelector("#filter-date");
 filterDateSelect.addEventListener("change", () => {
     resetTodoContainer();
     applyFilters();
+    addTodoEventListeners();
 });
 
 const filterPrioritySelect = document.querySelector("#filter-priority");
 filterPrioritySelect.addEventListener("change", () => {
     resetTodoContainer();
     applyFilters();
+    addTodoEventListeners();
 
 });
 
