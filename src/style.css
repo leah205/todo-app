@@ -1,0 +1,435 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+/*hide sidebar and change layout of todo items for phones*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+*{
+    box-sizing:border-box;
+    --main-color:rgb(116, 191, 194);
+    --text-color: rgb(83, 137, 139);
+    --secondary-color: white;
+    --hover-color: rgb(233, 230, 230);
+}
+:root{
+    font-family: Roboto, 'Times New Roman', Times, serif
+}
+
+@font-face{
+    font-family: Roboto;
+    src: url(./Roboto/Roboto-Light.ttf);
+}
+
+.container{
+    background: var(--main-color);
+    height: 100vh;
+    padding: 20px;
+    display: grid;
+    grid-template-columns: min(50%, 300px) 1fr;
+    grid-template-rows: 15% 85%;
+    column-gap:20px;
+    grid-template-areas: 
+        "sidebar header"
+        "sidebar main";
+}
+.blur{
+    filter: blur(9px);
+}
+
+header{
+    height: 100px;
+    padding: 20px;
+    text-align: center;
+    grid-area: header;
+    border: 5px solid white;
+    border-radius: 10px;
+}
+
+header h1{
+    color: white;
+    font-size: 3.5rem;
+}
+.project-header{
+    height: 70px;
+    color: white;
+    padding-right: 20px;
+    border-bottom: 1px solid white;
+    display: flex;
+    align-items: center;
+    font-size: 2rem;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+.project-header select{
+    height: 50px;
+    border: 0;
+    background-color: white;
+    padding: 5px;
+    border-radius: 5px;
+    color: var(--text-color);
+    font-size: 1.1rem;
+}
+
+.todo-item{
+    font-size: 1.5rem;
+    margin:auto;
+    margin-bottom: 20px;
+    display: flex;
+    /*width: 80vw;*/
+    height: 70px;
+    align-items: center;
+    background:white;
+    border-radius: 3px;
+    justify-content: space-between;
+    padding: 0px 30px;
+    color: var(--text-color);
+}
+.todo-item .priority-indicator{
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+    background: rgb(97, 175, 97);
+}
+
+.todo-item .low-priority{
+    background:  rgb(97, 175, 97);
+}
+
+.todo-item .medium-priority{
+    background:  rgb(235, 246, 137);
+}
+
+.todo-item .high-priority{
+    background:  rgb(215, 122, 122);
+}
+
+
+.todo-item button{
+    background: white;
+    border: 1px solid var(--main-color);
+    border-radius: 2px;
+    height: 35px;
+    color: var(--text-color);
+}
+.todo-item button:hover{
+    background: var(--hover-color);
+}
+
+.todo-item>div{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+input[type = "checkbox"]{
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+
+.checkmark{
+  height: 25px;
+  width: 25px;
+  border: 2px solid var(--main-color);
+  border-radius: 2px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.checkmark:hover{
+    background: var(--hover-color);
+}
+.checkmark img{
+    width: 20px;
+}
+
+.todo-list-container{
+    grid-area: main;
+    
+}
+.todo-container{
+    height: 70vh;
+    overflow-y: scroll;
+}
+
+.add-task-btn, .project-btn, .details-section .edit-task{
+    height:50px;
+    color: var(--text-color);
+    font-size: 1.5rem;
+    border-radius: 5px;
+    border: 2px solid var(--main-color);
+    background:  white;
+}
+.project-btn{
+    margin: auto;
+    text-align: center;
+}
+.container button:hover,
+.details-section .edit-task:hover{
+    background: var(--hover-color);
+}
+.projects-list li{
+    font-size:1.5rem;
+}
+.projects-list{
+    margin-left: 20px;
+}
+.selected-project{
+    font-weight: bold;
+}
+.add-task-section{
+    color: var(--text-color);
+    position: absolute;
+    margin: auto;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    height: 550px;
+    width: max(350px,50%);
+    border: 3px solid var(--text-color);
+    background: rgb(211, 223, 229);
+    border-radius: 10px;
+    display:flex;
+    flex-direction: column;
+    padding: 20px;
+    font-size:1.5rem;
+}
+.add-task-section input{
+    color: var(--text-color);
+    font-size:1.8rem;
+}
+.cancel-btn,
+.exit-details{
+    align-self: end;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 0;
+    background: rgb(126, 71, 71);
+    color: white;
+}
+.add-task-section input{
+    margin-top: 5px;
+    margin-bottom: 20px;
+    height: 50px;
+    border:2px solid var(--text-color);
+    border-radius:3px;
+    background-color: var(--hover-color);
+}
+.priority-btns{
+    justify-content: center;
+    max-width: 100%;
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+
+}
+.priority-btns button{
+    margin-bottom: 10px;
+    margin-right: 20px;
+    height: 60px;
+    width: 100px;
+    border: 0;
+    border-radius: 5px;
+    color: white;
+    font-size:1.2rem;
+}
+.priority-btns button:hover{
+    background: rgb(74, 73, 73);
+}
+.priority-btns #low{
+    background: rgb(57, 106, 57);
+}
+.priority-btns #medium{
+    background: rgb(131, 131, 69);
+}
+.priority-btns #high{
+    background: rgb(126, 71, 71);
+}
+.priority-btns button.selected-priority{
+    border: 1px solid rgb(0, 0, 0);
+    box-shadow: 5px 5px 10px black;
+    background: black;
+}
+.close-add-task{
+    width: 150px;
+    height: 50px;
+    font-size: 1.2rem;
+    margin: auto;
+    border: 2px solid var(--text-color);
+    border-radius: 5px;
+}
+.submit-task:hover{
+    background: var(--hover-color);
+}
+
+
+.side-bar{
+    grid-area: sidebar;
+    background: white;
+    padding: 40px 20px;
+    color: var(--text-color);
+    border-radius: 5px;
+    display:flex;
+    flex-direction: column;
+    justify-content: space-between;
+ 
+}
+.add-project-section{
+    display:flex;
+    align-items: center;
+    gap: 10px;
+}
+.add-project-section input{  
+    border-radius: 5px;
+    border: 2px solid var(--main-color);
+    color: var(--text-color);
+    height: 30px;
+    width: 70%;
+    font-size: 1.1rem;
+}
+.side-bar input:hover{
+    background-color: var(--hover-color);
+}
+
+.add-project-section button{
+    background:white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 0;
+    font-size: 2rem;
+    color: var(--main-color);
+}
+.add-project-section button:nth-of-type(2){
+    font-size: 1.5rem;
+    color: rgb(110, 0, 0);
+}
+
+
+.hidden{
+    display:none;
+}
+.projects-list li button{
+    background-color: transparent;
+    border: 0;
+    color: gray; 
+    font-size: 1.5rem;
+}
+.projects-list li button:hover{
+    color: rgb(72, 72, 72);
+}
+.projects-list li{
+    display: flex;
+    padding: 5px 5px;
+    justify-content: space-between;
+}
+.side-bar li.home{
+    padding: 10px 0px;
+}
+.side-bar li.home:hover,
+.side-bar .projects-list li:hover{
+    background: var(--hover-color);
+}
+.side-bar li ul{
+    margin-left: 15px;
+    font-size: 1.7rem;
+}
+.side-bar>ul>li{
+    margin-top: 5px;
+    font-size: 2rem; 
+}
+.details-section{
+    position: absolute;
+    margin: auto;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    height: 400px;
+    width: 800px;
+    background: white;
+    border-radius: 10px;
+    padding: 20px 40px;
+    color: var(--text-color);
+    font-size: 1.5rem;
+    gap: 30px;
+}
+.details-section > *{
+    margin-bottom: 30px;
+}
+.exit-details{
+    background: rgb(219, 109, 109);
+}
+.details-header{
+    display: flex;
+    justify-content: space-between;
+}
+.details-section h1{
+    font-size: 2rem;
+}
+
+
+
+
+
+
+    
+ hr{
+    background-color: var(--text-color);
+    height: 1px;
+    border: none;
+}
